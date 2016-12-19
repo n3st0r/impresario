@@ -1,3 +1,10 @@
-from django.shortcuts import render
+# -*- coding: UTF-8 -*-
+# from django.shortcuts import render
+from django.views.generic import ListView
+from impresario.models import Person
 
-# Create your views here.
+
+class PersonList(ListView):
+    queryset = Person.objects.all()
+    model = Person
+    template_name = 'person/list.html'
