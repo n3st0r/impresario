@@ -6,7 +6,7 @@
 <h2>Kontakty</h2>
 <ul>
     {% for person in object_list %}
-    <li><a href="#">{{ person.first_name }} {{ person.last_name }}</a></li>
+    <li><a href='{{ person.get_absolute_url }}'>{{ person.first_name }} {{ person.last_name }}</a></li>
     {% endfor %}
 </ul>
 {% endblock %}

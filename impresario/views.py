@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 # from django.shortcuts import render
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, DetailView
 from impresario.models import Person
 from impresario.forms import PersonCreateForm
 from django.core.urlresolvers import reverse
@@ -13,6 +13,15 @@ class PersonList(ListView):
 
 
 class PersonAdd(CreateView):
+    model = Person
+    template_name = 'person_form.html'
+    form_class = PersonCreateForm
+
+    def get_success_url(self):
+        return reverse('impresario:persons_list')
+
+
+class PersonDetail(DetailView):
     model = Person
     template_name = 'person_form.html'
     form_class = PersonCreateForm
