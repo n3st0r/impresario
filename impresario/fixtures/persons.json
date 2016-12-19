@@ -1,0 +1,26 @@
+[
+{
+   "model": "impresario.person",
+   "pk": 1,
+   "fields": {
+      "first_name": "Johny",
+      "last_name": "Walker"
+   }
+},
+{
+   "model": "impresario.person",
+   "pk": 2,
+   "fields": {
+      "first_name": "Liitle",
+      "last_name": "John"
+   }
+}
+{
+   "model": "impresario.person",
+   "pk": 3,
+   "fields": {
+      "first_name": "Jim",
+      "last_name": "Beam"
+   }
+}
+]
