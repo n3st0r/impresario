@@ -7,4 +7,4 @@ from impresario.models import Person
 class PersonList(ListView):
     queryset = Person.objects.all()
     model = Person
-    template_name = 'person/list.html'
+    template_name = 'persons_list.html'
