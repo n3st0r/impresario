@@ -21,3 +21,4 @@ class TestImprasario(TestCase):
         for data in self.contacts:
             o_person = Person.objects.get(first_name=data[0])
             self.assertEqual(o_person.first_name, data[0])
+            self.assertEqual(o_person.last_name, data[1])
