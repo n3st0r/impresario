@@ -14,7 +14,7 @@
       "first_name": "Liitle",
       "last_name": "John"
    }
-}
+},
 {
    "model": "impresario.person",
    "pk": 3,
