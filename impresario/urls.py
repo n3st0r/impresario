@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 from django.conf.urls import url
-from impresario.views import PersonList, PersonAdd, PersonEdit
+from impresario.views import PersonList, PersonAdd, PersonEdit, CustomerList
 
 
 app_name = 'impresario'
@@ -15,4 +15,6 @@ urlpatterns = [
     # example: /person/add
     url(r'^(?P<pk>\d+)/$', PersonEdit.as_view(), name='persons_edit'),
 
+    # example: /impresario/customer/
+    url(r'^customer/$', CustomerList.as_view(), name='customer_list'),
 ]
