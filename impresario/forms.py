@@ -6,4 +6,7 @@ from impresario.models import Person
 class PersonCreateForm(forms.ModelForm):
     class Meta:
         model = Person
-        fields = ('first_name', 'last_name')
+        fields = [
+            'first_name',
+            'last_name',
+        ]

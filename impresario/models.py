@@ -15,4 +15,4 @@ class Person(models.Model):
         verbose_name_plural = 'osoby'
 
     def get_absolute_url(self):
-        return reverse("impresario:persons_detail", kwargs={'pk': self.pk})
+        return reverse("impresario:persons_edit", kwargs={'pk': self.pk})
