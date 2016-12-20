@@ -8,12 +8,12 @@ from django.core.urlresolvers import reverse
 class PersonList(ListView):
     queryset = Person.objects.all()
     model = Person
-    template_name = 'persons_list.html'
+    template_name = 'persons/list.html'
 
 
 class PersonAdd(CreateView):
     model = Person
-    template_name = 'person_form.html'
+    template_name = 'persons/form.html'
     form_class = PersonCreateForm
 
     def get_success_url(self):
@@ -22,7 +22,7 @@ class PersonAdd(CreateView):
 
 class PersonEdit(UpdateView):
     model = Person
-    template_name = 'person_form.html'
+    template_name = 'persons/form.html'
     form_class = PersonCreateForm
 
     def get_success_url(self):
