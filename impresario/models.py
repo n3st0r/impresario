@@ -14,5 +14,21 @@ class Person(models.Model):
         verbose_name = 'osoba'
         verbose_name_plural = 'osoby'
 
+    def __str__(self):
+        return self.last_name + ' ' + self.first_name
+
     def get_absolute_url(self):
         return reverse("impresario:persons_edit", kwargs={'pk': self.pk})
+
+
+class Customer(models.Model):
+    name = models.CharField(max_length=32)
+    contact = models.ManyToManyField(Person)
+
+    class Meta:
+        app_label = "impresario"
+        verbose_name = 'klient'
+        verbose_name_plural = 'klienci'
+
+    def __str__(self):
+        return self.name
