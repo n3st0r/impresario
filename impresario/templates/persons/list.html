@@ -3,10 +3,17 @@
 {% block title %}{{ block.super }} - Impresario{% endblock %}
 
 {% block content %}
-<h2>Kontakty</h2>
+
+<div class="page-header">
+    <h1>Kontakty</h1>
+</div>
+<p class="lead">Lista kontaktów</p>
+
+
 <ul>
     {% for person in object_list %}
     <li><a href='{{ person.get_absolute_url }}'>{{ person.first_name }} {{ person.last_name }}</a></li>
     {% endfor %}
 </ul>
+
 {% endblock %}
