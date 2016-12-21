@@ -20,6 +20,7 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^impresario/', include('impresario.urls', namespace='impresario')),
+    url(r'^voip/device/', include('voiper.urls.devices', namespace='voiper')),
 ]
 
 if settings.DEBUG:
