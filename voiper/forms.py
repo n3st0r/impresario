@@ -14,7 +14,16 @@ class DeviceForm(forms.ModelForm):
 
 
 class NumberForm(forms.ModelForm):
-
+    secret = forms.CharField(
+        label='Hasło dla linii',
+        min_length=20,
+        max_length=32,
+    )
+    number = forms.CharField(
+        label='Numer linii',
+        min_length=9,
+        max_length=9,
+    )
 
     class Meta:
         model = Number
