@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}{{ block.super }} - Impresario{% endblock %}
+
+{% block content %}
+
+<ol class="breadcrumb">
+  <li><a href="#">Voip</a></li>
+  <li class="active">Lista numerów</li>
+</ol>
+
+<div class="page-header">
+    <h1>Lista numerów <small>VoIP</small></h1>
+</div>
+
+
+
+<p class="lead">Numery</p>
+
+
+<ul>
+    {% for number in object_list %}
+    <li><a href='{{ number.get_absolute_url }}'>{{ number }}</a></li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

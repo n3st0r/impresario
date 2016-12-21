@@ -2,7 +2,7 @@
 from django.conf.urls import url
 from voiper.views.devices import DeviceList, DeviceAdd, DeviceEdit
 
-app_name = 'service'
+app_name = 'voiper'
 
 urlpatterns = [
     # dokładnie: /device/

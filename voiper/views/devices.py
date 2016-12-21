@@ -13,14 +13,14 @@ class DeviceList(ListView):
 
 
 class DeviceAdd(CreateView):
-    queryset = Device.objects.all()
+    # queryset = Device.objects.all()
     form_class = DeviceForm
     model = Device
     template_name = 'devices/edit.html'
 
 
 class DeviceEdit(UpdateView):
-    queryset = Device.objects.all()
+    # queryset = Device.objects.all()
     form_class = DeviceForm
     model = Device
     template_name = 'devices/edit.html'

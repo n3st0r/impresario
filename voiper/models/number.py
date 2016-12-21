@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.urlresolvers import reverse
 from impresario.models import Customer
 from voiper.models import Context
 from voiper.services.security import gen_password
@@ -16,3 +17,7 @@ class Number(models.Model):
 
     def __str__(self):
         return self.number
+
+    def get_absolute_url(self):
+        return ''
+        # return reverse("voiper:voip_numbers", kwargs={'pk': self.pk})

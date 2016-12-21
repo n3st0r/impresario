@@ -21,6 +21,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^impresario/', include('impresario.urls', namespace='impresario')),
     url(r'^voip/device/', include('voiper.urls.devices', namespace='voiper')),
+    url(r'^voip/number/', include('voiper.urls.numbers', namespace='number')),
 ]
 
 if settings.DEBUG:
