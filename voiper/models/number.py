@@ -1,14 +1,10 @@
 from django.db import models
 from impresario.models import Customer
 from voiper.models import Context
-import random
+from voiper.services.security import gen_password
 
 
 class Number(models.Model):
-    def gen_password():
-        size=21
-        tablica='abcdefghjkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ123456789'
-        return ''.join(random.choice(tablica) for _ in range(size))
 
     number = models.CharField(max_length=9)
     secret = models.CharField(max_length=32, default=gen_password())
