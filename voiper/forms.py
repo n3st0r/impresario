@@ -14,6 +14,8 @@ class DeviceForm(forms.ModelForm):
 
 
 class NumberForm(forms.ModelForm):
+
+
     class Meta:
         model = Number
         fields = [
