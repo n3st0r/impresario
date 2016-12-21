@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}{{ block.super }} - Impresario{% endblock %}
+
+{% block content %}
+<ol class="breadcrumb">
+  <li><a href="#">Voiper</a></li>
+  <li><a href="/voip/number/">Lista numerów</a></li>
+  <li class="active">Dodaj</li>
+</ol>
+
+<div class="page-header">
+    <h1>Numer telefonu <small>Formularz</small></h1>
+</div>
+
+<form method="post" action="./">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <p><input type="submit" value="Zapisz"></p>
+</form>
+
+{% endblock %}

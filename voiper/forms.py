@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 from django import forms
-from voiper.models import Device
+from voiper.models import Device, Number
 
 
 class DeviceForm(forms.ModelForm):
@@ -10,4 +10,15 @@ class DeviceForm(forms.ModelForm):
             'mac',
             'ip',
             'dev',
+        ]
+
+
+class NumberForm(forms.ModelForm):
+    class Meta:
+        model = Number
+        fields = [
+            'number',
+            'secret',
+            'id_customer',
+            'id_context',
         ]

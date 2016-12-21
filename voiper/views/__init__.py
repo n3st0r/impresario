@@ -6,3 +6,4 @@
 """
 
 from voiper.views.devices import DeviceList, DeviceEdit, DeviceAdd
+from voiper.views.numbers import NumberList, NumberEdit
