@@ -1,4 +1,7 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% crispy form %}
+
 
 {% block title %}{{ block.super }} - Impresario{% endblock %}
 
@@ -15,7 +18,7 @@
 
 <form method="post" action="./">
     {% csrf_token %}
-    {{ form.as_p }}
+    {% crispy form %}
     <p><input type="submit" value="Zapisz"></p>
 </form>
 

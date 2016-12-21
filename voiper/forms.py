@@ -1,5 +1,6 @@
 # -*- coding: UTF-8 -*-
 from django import forms
+from crispy_forms.helper import FormHelper
 from voiper.models import Device, Number
 
 
@@ -14,6 +15,8 @@ class DeviceForm(forms.ModelForm):
 
 
 class NumberForm(forms.ModelForm):
+    helper = FormHelper()
+    helper.form_tag = False
     secret = forms.CharField(
         label='Hasło dla linii',
         min_length=20,
