@@ -7,3 +7,5 @@
 
 from voiper.models.devices import Device
 from voiper.models.context import Context
+from voiper.models.number import Number
+from voiper.models.contract import Contract
