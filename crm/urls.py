@@ -22,6 +22,7 @@ urlpatterns = [
     url(r'^impresario/', include('impresario.urls', namespace='impresario')),
     url(r'^voip/device/', include('voiper.urls.devices', namespace='voiper')),
     url(r'^voip/number/', include('voiper.urls.numbers', namespace='voip_numbers')),
+    url(r'^voip/dhcp/', include('voiper.urls.dhcp', namespace='voip_dhcp')),
 ]
 
 if settings.DEBUG:

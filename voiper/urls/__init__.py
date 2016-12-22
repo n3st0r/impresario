@@ -1,1 +1,1 @@
-from voiper.urls import devices
+from voiper.urls import devices, dhcp
