@@ -32,3 +32,7 @@ class Customer(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        pass
+        # return reverse("impresario:customer_edit", kwargs={'pk': self.pk})

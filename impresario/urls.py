@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 from django.conf.urls import url
-from impresario.views import PersonList, PersonAdd, PersonEdit, CustomerList
+from impresario.views import PersonList, PersonAdd, PersonEdit, CustomerList, CustomerAdd
 
 
 app_name = 'impresario'
@@ -17,4 +17,8 @@ urlpatterns = [
 
     # example: /impresario/customer/
     url(r'^customer/$', CustomerList.as_view(), name='customer_list'),
+
+    # exactly: /impresario/customer/add
+    url(r'^customer/add/$', CustomerAdd.as_view(), name='customer_add'),
+
 ]

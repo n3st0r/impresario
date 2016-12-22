@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 from django.views.generic import ListView, CreateView, UpdateView
 from impresario.models import Person, Customer
-from impresario.forms import PersonCreateForm
+from impresario.forms import PersonCreateForm, CustomerForm
 from django.core.urlresolvers import reverse
 
 
@@ -33,3 +33,12 @@ class CustomerList(ListView):
     queryset = Customer.objects.all()
     model = Customer
     template_name = 'customers/list.html'
+
+
+class CustomerAdd(CreateView):
+    model = Customer
+    form_class = CustomerForm
+    template_name = 'customers/form.html'
+
+    def get_success_url(self):
+        return reverse('impresario:customer_list')
