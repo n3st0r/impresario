@@ -19,4 +19,18 @@
     <p><input type="submit" value="Zapisz"></p>
 </form>
 
+{% if service %}
+<h2>Lista numerów <small>przyporządkowanych do linii</small></h2>
+<table>
+    {% for contract in service %}
+    <tr>
+        <td>{{ forloop.counter }}</td>
+        <td><a href='{{ contract.get_absolute_url }}'>{{ contract.id }}</a></td>
+        <td><a href='{{ contract.get_absolute_url }}'>{{ contract.id_number.number }}</a></td>
+
+    </tr>
+    {% endfor %}
+</table>
+{% endif %}
+
 {% endblock %}
