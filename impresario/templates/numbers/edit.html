@@ -22,4 +22,8 @@
     <p><input type="submit" value="Zapisz"></p>
 </form>
 
+
+{% if sip_account %}
+<pre>{{ sip_account }}</pre>
+{% endif %}
 {% endblock %}

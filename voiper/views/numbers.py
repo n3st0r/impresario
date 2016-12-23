@@ -4,22 +4,13 @@ from django.core.urlresolvers import reverse
 from voiper.models import Number
 from voiper.forms import NumberForm
 from voiper.services.security import gen_password
+from voiper.services.dialplan import create_sip_account
 
 
 class NumberList(ListView):
     queryset = Number.objects.all()
     model = Number
     template_name = 'numbers/list.html'
-
-
-class NumberEdit(UpdateView):
-    form_class = NumberForm
-    queryset = Number.objects.all()
-    model = Number
-    template_name = 'numbers/edit.html'
-
-    def get_success_url(self):
-        return reverse('voip_numbers:list')
 
 
 class NumberAdd(CreateView):
@@ -32,3 +23,20 @@ class NumberAdd(CreateView):
 
     def get_success_url(self):
         return reverse('voip_numbers:list')
+
+
+class NumberEdit(UpdateView):
+    form_class = NumberForm
+    queryset = Number.objects.all()
+    model = Number
+    template_name = 'numbers/edit.html'
+    context_object_name = 'number'
+
+    def get_success_url(self):
+        return reverse('voip_numbers:list')
+
+    def get_context_data(self, **kwargs):
+        context = super(NumberEdit, self).get_context_data(**kwargs)
+        context['sip_account'] = create_sip_account(context['number'])
+
+        return context
