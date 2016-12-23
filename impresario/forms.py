@@ -22,10 +22,13 @@ class CustomerForm(forms.ModelForm):
         min_length=2,
         max_length=32,
     )
+    # sip_proxy = forms.GenericIPAddressField(protocol='IPv4')
 
     class Meta:
         model = Customer
         fields = [
             'name',
             'contact',
+            'sip_proxy',
+            'logo_url',
         ]

@@ -42,3 +42,12 @@ class CustomerAdd(CreateView):
 
     def get_success_url(self):
         return reverse('impresario:customer_list')
+
+
+class CustomerEdit(UpdateView):
+    model = Customer
+    form_class = CustomerForm
+    template_name = 'customers/form.html'
+
+    def get_success_url(self):
+        return reverse('impresario:customer_list')
