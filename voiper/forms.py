@@ -29,6 +29,8 @@ class NumberForm(forms.ModelForm):
     )
     aster_template = forms.Textarea()
 
+    secretary_number = forms.ModelChoiceField(queryset=Number.objects.all())
+
     class Meta:
         model = Number
         fields = [
@@ -37,4 +39,6 @@ class NumberForm(forms.ModelForm):
             'id_customer',
             'id_context',
             'aster_template',
+            'secretary',
+            'secretary_number',
         ]
