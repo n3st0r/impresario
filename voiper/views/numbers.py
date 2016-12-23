@@ -1,6 +1,7 @@
 # -*- coding: UTF-8 -*-
 from django.views.generic import ListView, CreateView, UpdateView
 from django.core.urlresolvers import reverse
+from django.core.exceptions import ObjectDoesNotExist
 from voiper.models import Number
 from voiper.forms import NumberForm
 from voiper.services.security import gen_password
@@ -45,5 +46,8 @@ class NumberEdit(UpdateView):
         return context
 
     def get_initial(self, **kwargs):
-        secretary_id = Number.objects.get(number=self.object.secretary_number)
-        return {'secretary_number': secretary_id}
+        try:
+            secretary_id = Number.objects.get(number=self.object.secretary_number)
+            return {'secretary_number': secretary_id}
+        except ObjectDoesNotExist:
+            return {'secretary_number': ''}
