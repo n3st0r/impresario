@@ -4,6 +4,7 @@ from django.core.urlresolvers import reverse
 
 from voiper.models import Device, Contract
 from voiper.forms import DeviceForm
+from voiper.services.generator import generate_config_c7940
 
 
 class DeviceList(ListView):
@@ -31,5 +32,6 @@ class DeviceEdit(UpdateView):
     def get_context_data(self, **kwargs):
         context = super(DeviceEdit, self).get_context_data(**kwargs)
         context['service'] = Contract.objects.filter(id_device=context['dev']).select_related('id_number')
-        context['test'] = 'test'
+        context['filename'] = context['dev'].config_filename
+        context['config'] = generate_config_c7940()
         return context

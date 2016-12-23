@@ -18,3 +18,7 @@ class Device(models.Model):
 
     def get_absolute_url(self):
         return reverse("voiper:voip_device_edit", kwargs={'pk': self.pk})
+
+    @property
+    def config_filename(self):
+        return 'SIP' + self.mac.upper() + '.cnf'

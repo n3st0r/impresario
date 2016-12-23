@@ -20,7 +20,7 @@
 </form>
 
 {% if service %}
-<h2>Lista numerów <small>przyporządkowanych do linii</small></h2>
+<h2>Lista numerów {% if filename %}<small>do konfiguracji:: {{ filename }} {{ mac }}</small>{% endif %}</h2>
 <table>
     {% for contract in service %}
     <tr>
@@ -31,6 +31,12 @@
     </tr>
     {% endfor %}
 </table>
+{% endif %}
+
+{% if config %}
+<pre>
+    {{ config }}
+</pre>
 {% endif %}
 
 {% endblock %}
