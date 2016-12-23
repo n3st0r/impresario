@@ -24,6 +24,8 @@ class Person(models.Model):
 class Customer(models.Model):
     name = models.CharField(max_length=32)
     contact = models.ManyToManyField(Person)
+    sip_proxy = models.GenericIPAddressField('SIP proxy', protocol='IPv4', null=True)
+    logo_url = models.URLField('Adres URL logo', max_length=100, null=True)
 
     class Meta:
         app_label = "impresario"
