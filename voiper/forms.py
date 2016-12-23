@@ -27,6 +27,7 @@ class NumberForm(forms.ModelForm):
         min_length=9,
         max_length=9,
     )
+    aster_template = forms.Textarea()
 
     class Meta:
         model = Number
@@ -35,4 +36,5 @@ class NumberForm(forms.ModelForm):
             'secret',
             'id_customer',
             'id_context',
+            'aster_template',
         ]
