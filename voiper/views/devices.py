@@ -14,10 +14,14 @@ class DeviceList(ListView):
 
 
 class DeviceAdd(CreateView):
-    # queryset = Device.objects.all()
     form_class = DeviceForm
     model = Device
     template_name = 'devices/edit.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(DeviceAdd, self).get_context_data(**kwargs)
+        context['submit_text'] = 'Dodaj urządzenie'
+        return context
 
 
 class DeviceEdit(UpdateView):
@@ -31,7 +35,9 @@ class DeviceEdit(UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super(DeviceEdit, self).get_context_data(**kwargs)
-        context['service'] = Contract.objects.filter(id_device=context['dev']).select_related('id_number')
+        context['contracts'] = Contract.objects.filter(id_device=context['dev']).select_related('id_number')
         context['filename'] = context['dev'].config_filename
-        context['config'] = generate_config_c7940()
+        if context['contracts']:
+            context['config'] = generate_config_c7940(contracts=context['contracts'])
+        context['submit_text'] = 'Aktualizuj parametry urządzenia'
         return context
