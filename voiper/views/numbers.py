@@ -32,11 +32,18 @@ class NumberEdit(UpdateView):
     template_name = 'numbers/edit.html'
     context_object_name = 'number'
 
+
     def get_success_url(self):
         return reverse('voip_numbers:list')
 
     def get_context_data(self, **kwargs):
         context = super(NumberEdit, self).get_context_data(**kwargs)
-        context['sip_account'] = create_sip_account(context['number'])
+
+        if context['number'].aster_template:
+            context['sip_account'] = create_sip_account(context['number'])
 
         return context
+
+    def get_initial(self, **kwargs):
+        secretary_id = Number.objects.get(number=self.object.secretary_number)
+        return {'secretary_number': secretary_id}
