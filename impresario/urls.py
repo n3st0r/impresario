@@ -7,18 +7,18 @@ app_name = 'impresario'
 
 urlpatterns = [
     # example: /person/
-    url(r'^$', PersonList.as_view(), name='persons_list'),
+    url(r'^contact/$', PersonList.as_view(), name='persons_list'),
 
     # example: /person/add
-    url(r'^add/$', PersonAdd.as_view(), name='persons_add'),
+    url(r'^contact/add/$', PersonAdd.as_view(), name='persons_add'),
 
     # example: /person/add
-    url(r'^(?P<pk>\d+)/$', PersonEdit.as_view(), name='persons_edit'),
+    url(r'^contact/(?P<pk>\d+)/$', PersonEdit.as_view(), name='persons_edit'),
 
     # example: /impresario/customer/
-    url(r'^customer/$', CustomerList.as_view(), name='customer_list'),
+    url(r'^$', CustomerList.as_view(), name='customer_list'),
 
     # exactly: /impresario/customer/add
-    url(r'^customer/add/$', CustomerAdd.as_view(), name='customer_add'),
+    url(r'^add/$', CustomerAdd.as_view(), name='customer_add'),
 
 ]

@@ -9,6 +9,7 @@ class Number(models.Model):
 
     number = models.CharField(max_length=9)
     secret = models.CharField(max_length=32)
+    # secretary
     id_customer = models.ForeignKey(Customer, verbose_name="Klient")
     id_context = models.ForeignKey(Context, verbose_name="Kontekst")
     aster_template = models.TextField('Szablon konfiguracji', max_length=1024, blank=True, null=True)
