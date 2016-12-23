@@ -19,14 +19,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'bu=sgrcqs^9c+v3oqtr)jh=2jx!#hv3#gp($5axr=5182&+b_2'
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-INTERNAL_IPS = ['127.0.0.1']
 
 # Application definition
 
@@ -146,3 +141,6 @@ STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 ]
 STATIC_URL = '/impresario/static/'
+
+with open(os.path.join(os.path.dirname(__file__), "local_settings.py")) as f:
+    exec(compile(f.read(), "local_settings.py", 'exec'))
