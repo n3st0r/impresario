@@ -29,7 +29,10 @@ class NumberForm(forms.ModelForm):
     )
     aster_template = forms.Textarea()
 
-    secretary_number = forms.ModelChoiceField(queryset=Number.objects.all())
+    secretary_number = forms.ModelChoiceField(
+        queryset=Number.objects.all(),
+        required=False,
+        help_text="Jeśli przyjście ma być kierowane na inny numer, to tutaj go wybierz.")
 
     class Meta:
         model = Number
