@@ -6,21 +6,18 @@
 
 <ol class="breadcrumb">
   <li><a href="#">VoIP</a></li>
-  <li class="active">Lista numerów</li>
+  <li class="active">Lista kontekstów</li>
 </ol>
 
 <div class="page-header">
-    <h1>Lista numerów <small>VoIP</small></h1>
+    <h1>Konteksty <small>Lista</small></h1>
 </div>
 
-
-
-<p class="lead">Numery</p>
-
+<p class="lead">Lista kontekstów</p>
 
 <ul>
-    {% for number in object_list %}
-    <li><a href='{{ number.get_absolute_url }}'>{{ number }}</a></li>
+    {% for customer in object_list %}
+    <li><a href='{{ customer.get_absolute_url }}'>{{ customer.name }} </a></li>
     {% endfor %}
 </ul>
 
