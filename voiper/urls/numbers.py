@@ -2,7 +2,7 @@
 from django.conf.urls import url
 from voiper.views.numbers import NumberList, NumberEdit, NumberAdd
 
-# app_name = 'voip_numbers'
+# app_name = 'voip_number'
 
 
 urlpatterns = [

@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load render_table from django_tables2 %}
 {% block title %}{{ block.super }} - Impresario{% endblock %}
 
 {% block content %}
@@ -16,12 +16,6 @@
 
 
 <p class="lead">Numery</p>
-
-
-<ul>
-    {% for number in object_list %}
-    <li><a href='{{ number.get_absolute_url }}'>{{ number }}</a></li>
-    {% endfor %}
-</ul>
+{% render_table table %}
 
 {% endblock %}

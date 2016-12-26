@@ -22,4 +22,4 @@ class Number(models.Model):
         return self.number
 
     def get_absolute_url(self):
-        return reverse("voip_numbers:edit", kwargs={'pk': self.pk})
+        return reverse("voip_number:edit", kwargs={'pk': self.pk})

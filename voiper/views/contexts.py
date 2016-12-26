@@ -4,7 +4,7 @@ from django.core.urlresolvers import reverse
 
 from voiper.models import Context
 from voiper.forms import ContextForm
-from voiper.tables import ContextTable
+from voiper.tables.context import ContextTable
 from django_tables2 import SingleTableView
 
 

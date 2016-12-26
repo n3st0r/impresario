@@ -2,13 +2,22 @@
 from django.views.generic import ListView, CreateView, UpdateView
 from django.core.urlresolvers import reverse
 from django.core.exceptions import ObjectDoesNotExist
+from django_tables2 import SingleTableView
 from voiper.models import Number
 from voiper.forms import NumberForm
+from voiper.tables.numbers import NumberTable
 from voiper.services.security import gen_password
 from voiper.services.dialplan import create_sip_account
 
 
-class NumberList(ListView):
+class NumberList(SingleTableView):
+    # queryset = Number.objects.all()
+    table_class = NumberTable
+    model = Number
+    template_name = 'numbers/list.html'
+
+
+class NumberListOld(ListView):
     queryset = Number.objects.all()
     model = Number
     template_name = 'numbers/list.html'
@@ -32,7 +41,6 @@ class NumberEdit(UpdateView):
     model = Number
     template_name = 'numbers/edit.html'
     context_object_name = 'number'
-
 
     def get_success_url(self):
         return reverse('voip_numbers:list')
