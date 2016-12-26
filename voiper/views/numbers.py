@@ -12,9 +12,16 @@ from voiper.services.dialplan import create_sip_account
 
 class NumberList(SingleTableView):
     # queryset = Number.objects.all()
+    queryset = Number.objects.select_related('id_customer', 'id_context')
     table_class = NumberTable
     model = Number
+    paginate_by = 10
     template_name = 'numbers/list.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(NumberList, self).get_context_data(**kwargs)
+
+        return context
 
 
 class NumberListOld(ListView):

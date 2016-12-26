@@ -19,10 +19,15 @@ class NumberTable(tables.Table):
         verbose_name='Klient',
         accessor='id_customer.name'
     )
-    context = tables.Column(
+    context = tables.LinkColumn(
+        'voip_context:edit',
         verbose_name='Kontekst',
-        accessor='id_context.name'
+        accessor='id_context.name',
+        args=[A('pk')],
     )
+    table_pagination = {
+        'per_page': 10
+    }
 
     def __init__(self, *args, **kwargs):
         super(NumberTable, self).__init__(*args, **kwargs)
