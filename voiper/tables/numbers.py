@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 import django_tables2 as tables
 from django_tables2.utils import A
 from voiper.models import Number
@@ -5,15 +6,11 @@ import itertools
 
 
 class NumberTable(tables.Table):
-    # number = tables.Column(
-    #     verbose_name='Numer',
-    #     attrs={'th': {'id': 'foo'}},
-    # )
+
     number = tables.LinkColumn(
         'voip_number:edit',
         verbose_name='Numer',
         args=[A('pk')],
-        # args=[Number('pk')]
     )
     customer = tables.Column(
         verbose_name='Klient',

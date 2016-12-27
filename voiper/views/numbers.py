@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-from django.views.generic import ListView, CreateView, UpdateView
+from django.views.generic import CreateView, UpdateView
 from django.core.urlresolvers import reverse
 from django.core.exceptions import ObjectDoesNotExist
 from django_tables2 import SingleTableView
@@ -11,7 +11,6 @@ from voiper.services.dialplan import create_sip_account
 
 
 class NumberList(SingleTableView):
-    # queryset = Number.objects.all()
     queryset = Number.objects.select_related('id_customer', 'id_context')
     table_class = NumberTable
     model = Number
@@ -24,12 +23,6 @@ class NumberList(SingleTableView):
         return context
 
 
-class NumberListOld(ListView):
-    queryset = Number.objects.all()
-    model = Number
-    template_name = 'numbers/list.html'
-
-
 class NumberAdd(CreateView):
     form_class = NumberForm
     model = Number
@@ -39,7 +32,7 @@ class NumberAdd(CreateView):
         return {'secret': gen_password()}
 
     def get_success_url(self):
-        return reverse('voip_numbers:list')
+        return reverse('voip_number:list')
 
 
 class NumberEdit(UpdateView):
@@ -50,7 +43,7 @@ class NumberEdit(UpdateView):
     context_object_name = 'number'
 
     def get_success_url(self):
-        return reverse('voip_numbers:list')
+        return reverse('voip_number:list')
 
     def get_context_data(self, **kwargs):
         context = super(NumberEdit, self).get_context_data(**kwargs)
