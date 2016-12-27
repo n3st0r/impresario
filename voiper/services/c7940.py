@@ -73,4 +73,7 @@ messages_uri:  "{{ messages_uri }}"
 auto_answer: 32
 autocomplete: 0
 dnd_control: 2
+
+# Dialplan template (.xml format file relative to the TFTP root directory)
+dial_template: voip/dialplan/otago
 """

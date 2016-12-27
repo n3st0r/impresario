@@ -2,7 +2,7 @@ from django.views.generic import ListView, DetailView, View
 
 from impresario.models import Customer
 from voiper.models import Number
-from voiper.services.dialplan import create_sip_accounts
+from voiper.services.dialplan import create_sip_accounts, create_incoming_dialplan
 
 
 class CustomersView(ListView):
@@ -22,5 +22,6 @@ class CustomerSipView(DetailView):
         context = super(CustomerSipView, self).get_context_data(**kwargs)
         context['numbers'] = Number.objects.filter(id_customer=context['customer'].pk)
         context['config'] = create_sip_accounts(context['numbers'])
+        context['dialplan'] = create_incoming_dialplan(context['numbers'])
 
         return context

@@ -25,3 +25,14 @@ def create_sip_accounts(numbers):
         config += create_sip_account(number)
 
     return config
+
+
+def create_incoming_dialplan(numbers):
+    config = ''
+    for number in numbers:
+        if number.secretary:
+            config += 'exten => _%s,1,Dial(SIP/%s)\n' % (str(number)[2:], number.secretary_number)
+        else:
+            config += 'exten => _%s,1,Dial(SIP/%s)\n' % (str(number)[2:], number)
+
+    return config
