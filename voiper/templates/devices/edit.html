@@ -18,14 +18,14 @@
 <form method="post" action="./">
     {% csrf_token %}
     {{ form.as_p }}
-    <p><input type="submit" value="{{ submit_text }}"></p>
+    <p><input class="btn btn-primary" type="submit" value="{{ submit_text }}"></p>
 </form>
-
+<h4>TEST2:: {{ test2 }}</h4>
 {% if contracts %}
-<h2>Lista numerów {% if filename %}
-    <small>do konfiguracji:: {{ filename }} {{ customer.logo_url }}</small>
-    {% endif %}
-</h2>
+{% if filename %}
+<a class="btn btn-warning" href="{{ link }}" role="button">Generuj plik konfiguracji {{ filename }}</a>
+{% endif %}
+<h4>Lista numerów <small>przypisanych do urządzenia::</small></h4>
 <table>
     {% for contract in contracts %}
     <tr>
