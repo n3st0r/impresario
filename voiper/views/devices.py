@@ -56,7 +56,6 @@ class DevCfgGenerator(View):
     template_name = 'devices/edit.html'
 
     def dispatch(self, request, *args, **kwargs):
-        print(self.kwargs['pk'])
         dev = Device.objects.get(pk=self.kwargs['pk'])
         contracts = Contract.objects.filter(id_device=self.kwargs['pk']).select_related('id_number__id_customer')
         customer = Customer.objects.get(pk=1)
@@ -67,5 +66,4 @@ class DevCfgGenerator(View):
             contracts=contracts,
             customer=customer
         )
-        return DeviceEdit.as_view()(request, *args, **kwargs)
-        # return DeviceList.as_view()(request, *args, **kwargs)
+        return DeviceList.as_view()(request, *args, **kwargs)
