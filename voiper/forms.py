@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 from django import forms
 from crispy_forms.helper import FormHelper
-from voiper.models import Context, Device, Number
+from voiper.models import Context, Contract, Device, Number
 
 
 class ContextForm(forms.ModelForm):
@@ -10,6 +10,19 @@ class ContextForm(forms.ModelForm):
         fields = [
             'name',
             'description',
+        ]
+
+
+class ContractForm(forms.ModelForm):
+    helper = FormHelper()
+    helper.form_tag = False
+
+    class Meta:
+        model = Contract
+        fields = [
+            'id_number',
+            'id_device',
+            'device_line',
         ]
 
 
