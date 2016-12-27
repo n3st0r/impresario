@@ -14,6 +14,14 @@ def create_sip_account(number):
         number=number.number,
         secret=number.secret,
         context=number.id_context.name,
-    )
+    ) + '\n\n'
 
     return cfg
+
+
+def create_sip_accounts(numbers):
+    config = ''
+    for number in numbers:
+        config += create_sip_account(number)
+
+    return config

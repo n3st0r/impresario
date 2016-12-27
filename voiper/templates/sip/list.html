@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}{{ block.super }} - Impresario{% endblock %}
+
+{% block content %}
+
+<ol class="breadcrumb">
+  <li><a href="#">VoIP</a></li>
+  <li class="active">Lista urządzeń</li>
+</ol>
+
+<ul>
+    {% for obj in object_list %}
+    <li><a href='/voip/sip/{{ obj.id }}/'>{{ obj }}</a></li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

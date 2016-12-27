@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}{{ block.super }} - Impresario{% endblock %}
+
+{% block content %}
+<ol class="breadcrumb">
+    <li><a href="#">SIP</a></li>
+</ol>
+
+<!-- Main jumbotron for a primary marketing message or call to action -->
+<div class="jumbotron">
+    <div class="container">
+        <h1>SIP</h1>
+        <p>Tymczasowo lista kont.</p>
+        <p><a class="btn btn-primary btn-lg" href="#" role="button">Generuj konta SIP &raquo;</a></p>
+    </div>
+</div>
+
+<pre>{{ config }}</pre>
+
+<div class="container">
+    <!-- Example row of columns -->
+    <div class="row">
+        <div class="col-md-4">
+            <h2></h2>
+            <p></p>
+            <p><a class="btn btn-default" href="#" role="button"> &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2></h2>
+            <p></p>
+            <p><a class="btn btn-default" href="#" role="button"> &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2></h2>
+            <p></p>
+            <p><a class="btn btn-default" href="#" role="button"> &raquo;</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}
