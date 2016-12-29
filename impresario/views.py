@@ -3,12 +3,25 @@ from django.views.generic import ListView, CreateView, UpdateView
 from impresario.models import Person, Customer
 from impresario.forms import PersonCreateForm, CustomerForm
 from django.core.urlresolvers import reverse
+from django_datatables_view.base_datatable_view import BaseDatatableView
 
 
 class PersonList(ListView):
     queryset = Person.objects.all()
     model = Person
     template_name = 'persons/list.html'
+
+
+class PersonList2(ListView):
+    queryset = Person.objects.all()
+    model = Person
+    template_name = 'persons/list2.html'
+
+
+class PersonList2Json(BaseDatatableView):
+    model = Person
+    columns = ['last_name', 'first_name']
+    order_columns = ['last_name', 'first_name']
 
 
 class PersonAdd(CreateView):

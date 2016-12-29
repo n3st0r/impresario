@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <meta lang="pl">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Piotr Dobrysiak">
     <!-- Bootstrap core CSS -->
@@ -11,6 +12,8 @@
     <link href="/impresario/static/css/sticky-footer-navbar.css" rel="stylesheet">
 
     <link href="/impresario/static/css/django-tables2.css" rel="stylesheet">
+
+    {% block extra_head %}{% endblock %}
 
     <title>{% block title %}Impresario{% endblock %}</title>
 </head>
@@ -29,5 +32,6 @@
 <script src="/impresario/static/js/jquery.1.12.4.min.js"></script>
 <script>window.jQuery || document.write('<script src="/impresario/static/css/jquery.1.12.4.min.js"><\/script>')</script>
 <script src="/impresario/static/js/bootstrap.3.3.7.min.js"></script>
+{% block extra_footer %}{% endblock %}
 </body>
 </html>

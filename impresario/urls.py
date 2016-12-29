@@ -1,13 +1,15 @@
 # -*- coding: UTF-8 -*-
 from django.conf.urls import url
-from impresario.views import PersonList, PersonAdd, PersonEdit, CustomerList, CustomerAdd, CustomerEdit
+from impresario.views import PersonList2, PersonAdd, PersonEdit, PersonList2Json,CustomerList, CustomerAdd, CustomerEdit
 
 
 app_name = 'impresario'
 
 urlpatterns = [
     # exactly: /impresario/person/
-    url(r'^contact/$', PersonList.as_view(), name='persons_list'),
+    url(r'^contact/$', PersonList2.as_view(), name='persons_list'),
+
+    url(r'^persons_data/$', PersonList2Json.as_view(), name="persons_list_json"),
 
     # exactly: /impresario/person/add
     url(r'^contact/add/$', PersonAdd.as_view(), name='persons_add'),
