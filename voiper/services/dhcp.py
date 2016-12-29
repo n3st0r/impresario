@@ -25,11 +25,18 @@ def host_definition(mac, model, ip):
     eui.dialect = mac_unix_expanded
     ether = 'hardware ethernet %s' % get_eui_mac(mac)
     ipaddr = 'fixed-address %s' % ip
-    config_line = 'host %s-%s {%s; %s;}\n' % (
+
+    if model == 'PAP2-NA':
+        device_option = ' option provision-tftp "tftp://192.168.99.2/voip/pap2t-na/$MA.cfg";'
+    else:
+        device_option = ''
+
+    config_line = 'host %s-%s {%s; %s;%s}\n' % (
         model,
         mac,
         ether,
         ipaddr,
+        device_option,
     )
     return config_line
 
