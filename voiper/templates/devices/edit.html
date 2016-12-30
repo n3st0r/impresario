@@ -22,9 +22,9 @@
 </form>
 <h4>TEST2:: {{ test2 }}</h4>
 {% if contracts %}
-{% if filename %}
-<a class="btn btn-warning" href="{{ link }}" role="button">Generuj plik konfiguracji {{ filename }}</a>
-{% endif %}
+
+<a class="btn btn-warning" href="{{ link }}" role="button">Generuj plik konfiguracji</a>
+
 <h4>Lista numerów <small>przypisanych do urządzenia::</small></h4>
 <table>
     {% for contract in contracts %}

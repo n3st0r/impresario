@@ -1,5 +1,6 @@
 from django.core.urlresolvers import reverse
 from django.db import models
+from django.conf import settings
 
 
 class Device(models.Model):
@@ -26,3 +27,9 @@ class Device(models.Model):
             return 'SIP' + self.mac.upper() + '.cnf'
         elif self.dev == 'PAP2-NA':
             return self.mac.lower() + '.cfg'
+
+    def get_option(self):
+        data = settings.VOIPER
+        data['model'] = self.dev
+        data['mac'] = self.mac
+        return data

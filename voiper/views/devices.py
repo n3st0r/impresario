@@ -1,12 +1,12 @@
 # -*- coding: UTF-8 -*-
-from django.views.generic import ListView, CreateView, UpdateView, View, RedirectView
+from django.views.generic import ListView, CreateView, UpdateView, View
 from django.core.urlresolvers import reverse
-from django.conf import settings
+# from django.conf import settings
 
 from voiper.models import Device, Contract
 from impresario.models import Customer
 from voiper.forms import DeviceForm
-from voiper.services.generator import generate_config, save_config
+from voiper.services.generator import generate_config
 
 
 class DeviceList(ListView):
@@ -38,17 +38,18 @@ class DeviceEdit(UpdateView):
     def get_context_data(self, **kwargs):
         context = super(DeviceEdit, self).get_context_data(**kwargs)
         context['contracts'] = Contract.objects.filter(id_device=context['dev']).select_related('id_number__id_customer')
-        context['filename'] = context['dev'].config_filename
+        # context['filename'] = context['dev'].config_filename
         context['link'] = reverse('voiper:generator', kwargs={'pk': context['dev'].pk})
         # !!!!!!!!!!!!!!!! POPRAWIC !!!!!!!!!!!!!!!!!!!!!!!!
         context['customer'] = Customer.objects.get(pk=1)
-        context['test2'] = settings.VOIPER['cfg_dir']
+        # context['test2'] = settings.VOIPER['cfg_dir']
         if context['contracts']:
             context['config'] = generate_config(
                 contracts=context['contracts'],
                 customer=context['customer'],
-                model=context['dev'].dev,
-                filename=context['dev'].config_filename
+                # model=context['dev'].dev,
+                # filename=context['dev'].config_filename,
+                option=context['dev'].get_option(),
             )
         context['submit_text'] = 'Aktualizuj parametry urządzenia'
         return context
@@ -61,13 +62,14 @@ class DevCfgGenerator(View):
         dev = Device.objects.get(pk=self.kwargs['pk'])
         contracts = Contract.objects.filter(id_device=self.kwargs['pk']).select_related('id_number__id_customer')
         customer = Customer.objects.get(pk=1)
-        dir = settings.VOIPER['cfg_dir']
-        file = dir + dev.config_filename
+        # dir = settings.VOIPER['cfg_dir']
+        # file = dir + dev.config_filename
         generate_config(
-            filename=file,
+            # filename=file,
             contracts=contracts,
             customer=customer,
-            model=dev.dev,
+            # model=dev.dev,
+            option=dev.get_option(),
             save=True
         )
         return DeviceList.as_view()(request, *args, **kwargs)

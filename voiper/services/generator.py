@@ -3,76 +3,62 @@ from voiper.services.c7940 import template_c7940
 from voiper.services.pap2t import template_pap2
 
 
-def generate_config(contracts, customer, model, filename, save=False):
-    print('test1' + str(model).upper())
-    if str(model).upper() == 'C7940':
-        print('test2')
+def generate_config(contracts, customer, option, save=False):
+    data = prepare_data(contracts=contracts, option=option)
+    data['sip_proxy'] = customer.sip_proxy
+    if str(option['model']).upper() == 'C7940':
         generator = eval('generate_config_c7940')
-        # filename = 'SIP' + mac.upper() + '.cnf'
-    elif str(model).upper() == 'PAP2-NA':
-        print('test - PAP2T-NA')
+        data['logo_url'] = customer.logo_url
+        data['filename'] = 'SIP' + option['mac'].upper() + '.cnf'
+        data['secret'] = 'secret'
+        data['phone_prompt'] = 'c7940_cmd'
+        data['messages_uri'] = ''
+
+    elif str(option['model']).upper() == 'PAP2-NA':
         generator = eval('generate_config_pap2t')
+        data['filename'] = option['mac'].lower() + '.cfg'
+        data['provisioning_rule'] = 'tftp://%s/voip/pap2t/$MA.cfg' % option['tftp']
+        data['upgrade_rule'] = '(&lt; 5.1.6)? tftp://%s/voip/pap2t-5-1-6.bin' % option['tftp']
     # if generator:
-    config = generator(contracts, customer)
+    config = generator(data)
 
     if save:
-        save_config(filename, config)
+        save_config(data['filename'], config)
     else:
         return config
 
 
-def save_config(filename, config):
-
-    # print(filename)
-    with open(filename, 'w') as file:
-        # config = generator(contracts, customer)
-        file.write(config)
-        return True
-
-
-def generate_config_c7940(contracts, customer):
-    print('Test Generator')
+def prepare_data(contracts, option):
     data = {}
     for contract in contracts:
         line = str(contract.device_line)
         data['number_' + line] = contract.id_number.number
         data['secret_' + line] = contract.id_number.secret
 
-    if 'number_2' not in data:
-        data['number_2'] = ''
-        data['secret_2'] = ''
+    if 'provider' in option:
+        data['provider'] = option['provider']
+
+    return data
+
+
+def save_config(filename, config):
+    with open(filename, 'w') as file:
+        file.write(config)
+
+
+def generate_config_c7940(data):
+    print('Test Generator')
 
     cfg = Environment().from_string(template_c7940).render(
-        data,
-        sip_proxy=customer.sip_proxy,
-        logo_url=customer.logo_url,
-        number1=data['number_1'],
-        secret1=data['secret_1'],
-        number2=data['number_2'],
-        secret2=data['secret_2'],
-        phone_label='Provider',
-        secret='secret',
-        phone_prompt='c7940_cmd',
-        messages_uri=''
-    )
+        data=data,
 
+    )
     return cfg
 
 
-def generate_config_pap2t(contracts, customer):
-    data = {}
-    for contract in contracts:
-        line = str(contract.device_line)
-        data['number_' + line] = contract.id_number.number
-        data['secret_' + line] = contract.id_number.secret
+def generate_config_pap2t(data):
+    data['dialplan_1']='(*xx|[3469]11|0|00|[2-9]xxxxxx|1xxx[2-9]xxxxxxS0|xxxxxxxxxxxx.)'
+    data['dialplan_2']='(*xx|[3469]11|0|00|[2-9]xxxxxx|1xxx[2-9]xxxxxxS0|xxxxxxxxxxxx.)'
 
-    if 'number_2' not in data:
-        data['number_2'] = ''
-        data['secret_2'] = ''
-
-    config = Environment().from_string(template_pap2).render(
-        data,
-        sip_proxy=customer.sip_proxy,
-        provisioning_rule='tftp://192.168.99.2/voip/pap2t-na/$MA.cfg',
-    )
+    config = Environment().from_string(template_pap2).render(data=data)
     return config
