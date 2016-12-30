@@ -22,4 +22,7 @@ class Device(models.Model):
 
     @property
     def config_filename(self):
-        return 'SIP' + self.mac.upper() + '.cnf'
+        if self.dev == 'C7940':
+            return 'SIP' + self.mac.upper() + '.cnf'
+        elif self.dev == 'PAP2-NA':
+            return self.mac.lower() + '.cfg'

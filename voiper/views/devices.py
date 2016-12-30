@@ -6,7 +6,7 @@ from django.conf import settings
 from voiper.models import Device, Contract
 from impresario.models import Customer
 from voiper.forms import DeviceForm
-from voiper.services.generator import generate_config_c7940, save_config
+from voiper.services.generator import generate_config, save_config
 
 
 class DeviceList(ListView):
@@ -44,9 +44,11 @@ class DeviceEdit(UpdateView):
         context['customer'] = Customer.objects.get(pk=1)
         context['test2'] = settings.VOIPER['cfg_dir']
         if context['contracts']:
-            context['config'] = generate_config_c7940(
+            context['config'] = generate_config(
                 contracts=context['contracts'],
-                customer=context['customer']
+                customer=context['customer'],
+                model=context['dev'].dev,
+                filename=context['dev'].config_filename
             )
         context['submit_text'] = 'Aktualizuj parametry urządzenia'
         return context
@@ -61,9 +63,11 @@ class DevCfgGenerator(View):
         customer = Customer.objects.get(pk=1)
         dir = settings.VOIPER['cfg_dir']
         file = dir + dev.config_filename
-        save_config(
+        generate_config(
             filename=file,
             contracts=contracts,
-            customer=customer
+            customer=customer,
+            model=dev.dev,
+            save=True
         )
         return DeviceList.as_view()(request, *args, **kwargs)
