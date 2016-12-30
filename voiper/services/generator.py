@@ -6,9 +6,11 @@ from voiper.services.pap2t import template_pap2
 def generate_config(contracts, customer, option, save=False):
     data = prepare_data(contracts=contracts, option=option)
     data['sip_proxy'] = customer.sip_proxy
+    data['dir'] = option['cfg_dir'] + option['model'].lower() + '/'
     if str(option['model']).upper() == 'C7940':
         generator = eval('generate_config_c7940')
         data['logo_url'] = customer.logo_url
+
         data['filename'] = 'SIP' + option['mac'].upper() + '.cnf'
         data['secret'] = 'secret'
         data['phone_prompt'] = 'c7940_cmd'
@@ -19,11 +21,14 @@ def generate_config(contracts, customer, option, save=False):
         data['filename'] = option['mac'].lower() + '.cfg'
         data['provisioning_rule'] = 'tftp://%s/voip/pap2t/$MA.cfg' % option['tftp']
         data['upgrade_rule'] = '(&lt; 5.1.6)? tftp://%s/voip/pap2t-5-1-6.bin' % option['tftp']
+        data['dir'] = option['cfg_dir'] + 'pap2t/'
     # if generator:
     config = generator(data)
-
+    filename = data['dir'] + data['filename']
+    print(filename)
     if save:
-        save_config(data['filename'], config)
+        filename = data['dir'] + data['filename']
+        save_config(filename, config)
     else:
         return config
 

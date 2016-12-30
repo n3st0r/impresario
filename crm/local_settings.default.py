@@ -10,4 +10,6 @@ SECRET_KEY = 'bu=sgrcqs^9c+v3oqtr)jh=2jx!#hv3#gp($5axr=5182&+b_2'
 
 VOIPER = {
     'cfg_dir': '/tftp/',
+    'tftp': '192.168.0.1',
+    'provider': 'Spam',
 }
