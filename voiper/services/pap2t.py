@@ -328,7 +328,7 @@ template_pap2 = """
   <VMWI_Ring_Policy_1_ ua="na">New VM Available</VMWI_Ring_Policy_1_>
   <Ring_On_No_New_VM_1_ ua="na">No</Ring_On_No_New_VM_1_>
 
-  <Line_Enable_2_ ua="na">{% if number_2 in data %}Yes{% else %}No{% endif %}</Line_Enable_2_>
+  <Line_Enable_2_ ua="na">{% if data['number_2'] %}Yes{% else %}No{% endif %}</Line_Enable_2_>
   <SAS_Enable_2_ ua="na">No</SAS_Enable_2_>
   <SAS_DLG_Refresh_Intvl_2_ ua="na">30</SAS_DLG_Refresh_Intvl_2_>
   <SAS_Inbound_RTP_Sink_2_ ua="na"></SAS_Inbound_RTP_Sink_2_>
