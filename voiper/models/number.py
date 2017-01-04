@@ -2,6 +2,7 @@ from django.db import models
 from django.core.urlresolvers import reverse
 from impresario.models import Customer
 from voiper.models import Context
+from voiper.models.stencil import Stencil
 # from voiper.services.security import gen_password
 
 
@@ -14,6 +15,7 @@ class Number(models.Model):
     id_customer = models.ForeignKey(Customer, verbose_name="Klient")
     id_context = models.ForeignKey(Context, verbose_name="Kontekst")
     aster_template = models.TextField('Szablon konfiguracji', max_length=1024, blank=True, null=True)
+    stencil = models.ForeignKey(Stencil, verbose_name="Szablon konfiguracji")
 
     class Meta:
         ordering = ('number', )

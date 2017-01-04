@@ -69,6 +69,7 @@ class NumberForm(forms.ModelForm):
             'secret',
             'id_customer',
             'id_context',
+            'stencil',
             'aster_template',
             'secretary',
             'secretary_number',
