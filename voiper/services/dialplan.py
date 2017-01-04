@@ -10,7 +10,7 @@ def create_sip_account(number):
     # except ObjectDoesNotExist:
     #     return False
 
-    cfg = Environment().from_string(number.aster_template).render(
+    cfg = Environment().from_string(number.stencil.content).render(
         number=number.number,
         secret=number.secret,
         context=number.id_context.name,

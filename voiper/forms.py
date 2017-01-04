@@ -55,8 +55,6 @@ class NumberForm(forms.ModelForm):
         min_length=9,
         max_length=9,
     )
-    aster_template = forms.Textarea()
-
     secretary_number = forms.ModelChoiceField(
         queryset=Number.objects.all(),
         required=False,
@@ -70,7 +68,6 @@ class NumberForm(forms.ModelForm):
             'id_customer',
             'id_context',
             'stencil',
-            'aster_template',
             'secretary',
             'secretary_number',
         ]
