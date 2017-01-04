@@ -25,7 +25,7 @@ urlpatterns = [
     url(r'^voip/dhcp/', include('voiper.urls.dhcp', namespace='voip_dhcp')),
     url(r'^voip/context/', include('voiper.urls.context', namespace='voip_context')),
     url(r'^voip/contract/', include('voiper.urls.contracts', namespace='voip_contract')),
-    url(r'^voip/sip/', include('voiper.urls.sip', namespace='voip_sip')),
+    url(r'^voip/asterisk/', include('voiper.urls.asterisk', namespace='voip_asterisk')),
 ]
 
 if settings.DEBUG:

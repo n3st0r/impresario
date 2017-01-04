@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 from django import forms
 from crispy_forms.helper import FormHelper
-from voiper.models import Context, Contract, Device, Number
+from voiper.models import Context, Contract, Device, Number, Stencil
 
 
 class ContextForm(forms.ModelForm):
@@ -24,6 +24,12 @@ class ContractForm(forms.ModelForm):
             'id_device',
             'device_line',
         ]
+
+
+class StencilForm(forms.ModelForm):
+    class Meta:
+        model = Stencil
+        fields = ('name', 'content', )
 
 
 class DeviceForm(forms.ModelForm):
