@@ -29,7 +29,7 @@ class ContractForm(forms.ModelForm):
 class StencilForm(forms.ModelForm):
     class Meta:
         model = Stencil
-        fields = ('name', 'content', )
+        fields = ('name', 'description', 'content', )
 
 
 class DeviceForm(forms.ModelForm):
