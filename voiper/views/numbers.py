@@ -48,7 +48,7 @@ class NumberEdit(UpdateView):
     def get_context_data(self, **kwargs):
         context = super(NumberEdit, self).get_context_data(**kwargs)
 
-        if context['number'].aster_template:
+        if context['number'].stencil:
             context['sip_account'] = create_sip_account(context['number'])
 
         return context
