@@ -62,8 +62,8 @@ def generate_config_c7940(data):
 
 
 def generate_config_pap2t(data):
-    data['dialplan_1'] = '(*xx|11x|4xxx|0[1-9]xxxxxxxx|00[1-9]xxxxxxx.|019xxx)'
-    data['dialplan_2'] = '(*xx|11x|4xxx|0[1-9]xxxxxxxx|00[1-9]xxxxxxx.|019xxx)'
+    data['dialplan_1'] = '(*xx|11x|4xxx|[1-9]xxxxxxxx|0[1-9]xxxxxxxx|00[1-9]xxxxxxx.|019xxx)'
+    data['dialplan_2'] = '(*xx|11x|4xxx|[1-9]xxxxxxxx|0[1-9]xxxxxxxx|00[1-9]xxxxxxx.|019xxx)'
 
     config = Environment().from_string(template_pap2).render(data=data)
     return config
