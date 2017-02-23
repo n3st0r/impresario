@@ -1,6 +1,8 @@
 template_c7940 = """
 # SIP Configuration Generic File (start)
 
+call_waiting: "0"
+
 # Proxy Server
 proxy1_address: "{{ data['sip_proxy'] }}"
 proxy2_address: ""
